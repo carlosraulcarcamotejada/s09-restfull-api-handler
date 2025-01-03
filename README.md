@@ -12,6 +12,9 @@ docker compose up -d
 
 3. Reemplazar las variables de entorno
 
+4. Ejecutar el seed para [crear la base de datos local](http://localhost:3000/api/seed)
+
+
 - Comandos de Prisma
 
 ```
