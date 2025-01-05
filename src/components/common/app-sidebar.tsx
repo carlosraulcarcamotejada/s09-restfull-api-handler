@@ -15,14 +15,17 @@ import {
 import { LucideProps } from "lucide-react";
 import { NavUser, NavUserProps } from "@/components/common/nav-user";
 import { TeamSwitcher } from "@/components/common/team-switcher";
+import { IconProps } from "@radix-ui/react-icons/dist/types";
 
 interface AppSidebarLinksProps {
-  id:number;
+  id: number;
   title: string;
   url: string;
-  icon: ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-  >;
+  icon:
+    | ForwardRefExoticComponent<
+        Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+      >
+    | ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
 }
 
 interface AppSidebarProps {
@@ -30,9 +33,11 @@ interface AppSidebarProps {
   navUser: NavUserProps;
 }
 
-export function AppSidebar({ appSidebarProps  } : { appSidebarProps: AppSidebarProps }) {
-
-
+export function AppSidebar({
+  appSidebarProps,
+}: {
+  appSidebarProps: AppSidebarProps;
+}) {
   const { appSidebarLinks, navUser } = appSidebarProps;
 
   return (
@@ -49,7 +54,7 @@ export function AppSidebar({ appSidebarProps  } : { appSidebarProps: AppSidebarP
         <SidebarGroupLabel>Application</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
-            {appSidebarLinks.map(({id,icon:Icon,title,url}) => (
+            {appSidebarLinks.map(({ id, icon: Icon, title, url }) => (
               <SidebarMenuItem key={id} isActive>
                 <SidebarMenuButton asChild>
                   <Link href={url}>

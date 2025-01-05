@@ -1,11 +1,4 @@
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  //   NavbarItem,
-} from "@nextui-org/navbar";
-import { SearchIcon } from "lucide-react";
-// import Link from "next/link";
+import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/navbar";
 import { Input } from "../ui/input";
 import {
   DropdownMenu,
@@ -23,38 +16,18 @@ import {
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { ShadCnLogo } from "../icon/shad-cn-logo-icon";
-
-interface TopbarProps {
-  links?: any;
-}
+import { Button } from "../ui/button";
+import { MoonIcon } from "lucide-react";
 
 export function Topbar({ children }: { children?: React.ReactNode }) {
   return (
     <Navbar isBordered className="">
       <div>{children}</div>
       <NavbarContent justify="start" className="bg-lime-300@">
-        <NavbarBrand className="mr-4 flex items-center gap-2 lg:mr-6">
+        <NavbarBrand className="items-center gap-2 lg:mr-6 hidden lg:flex">
           <ShadCnLogo className="size-6" />
-          <span className="hidden font-bold lg:inline-block">shadcn/ui</span>
-          {/* <p className="hidden sm:block font-bold text-inherit">ACME</p> */}
+          <span className="font-bold">shadcn/ui</span>
         </NavbarBrand>
-        {/* <NavbarContent className="hidden sm:flex gap-3">
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Features
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link aria-current="page" color="secondary" href="#">
-              Customers
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Integrations
-            </Link>
-          </NavbarItem>
-        </NavbarContent> */}
       </NavbarContent>
 
       <NavbarContent
@@ -63,35 +36,13 @@ export function Topbar({ children }: { children?: React.ReactNode }) {
         justify="end"
       >
         {/* Input */}
-        <Input
-          //   classNames={{
-          //     base: "max-w-full sm:max-w-[10rem] h-10",
-          //     mainWrapper: "h-full",
-          //     input: "text-small",
-          //     inputWrapper:
-          //       "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          //   }}
-          placeholder="Type to search..."
-          //   size="sm"
-          //   startContent={}
-          type="search"
-        />
-        <SearchIcon size={18} />
+        <Input placeholder="Type to search..." type="search" className="hidden border border-input hover:bg-accent hover:text-accent-foreground relative  bg-foreground-100/50 shadow-none md:w-40 lg:w-56 xl:w-64  lg:block " />
+        {/* <SearchIcon size={18} /> */}
 
         {/* Dropdown Menu */}
-        <DropdownMenu
-        // placement="bottom-end"
-        >
+        <DropdownMenu>
           <DropdownMenuTrigger>
-            <Avatar
-              // isBordered
-              // as="button"
-              // name="Jason Hughes"
-              // size="sm"
-              // src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-              className="transition-transform "
-              color="secondary"
-            >
+            <Avatar className="transition-transform " color="secondary">
               <AvatarImage
                 src={"https://i.pravatar.cc/150?u=a042581f4e29026704d"}
                 alt={"Jason Hughes"}
@@ -151,6 +102,9 @@ export function Topbar({ children }: { children?: React.ReactNode }) {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        <Button variant={"ghost"} size={"icon"} className="size-12">
+          <MoonIcon className="size-12"  />
+        </Button>
       </NavbarContent>
     </Navbar>
   );

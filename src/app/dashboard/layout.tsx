@@ -2,15 +2,12 @@ import {
   AppSidebar,
   AppSidebarLinksProps,
 } from "@/components/common/app-sidebar";
+import { Footer } from "@/components/common/footer";
 import { NavUserProps } from "@/components/common/nav-user";
 import { Topbar } from "@/components/common/top-bar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import {
-  Calculator,
-  HeartIcon,
-  LayoutDashboard,
-  PocketKnifeIcon,
-} from "lucide-react";
+import { CheckboxIcon } from "@radix-ui/react-icons";
+import { LayoutDashboard, ListPlusIcon } from "lucide-react";
 
 export default function DashboardLayout({
   children,
@@ -23,25 +20,19 @@ export default function DashboardLayout({
       icon: LayoutDashboard,
       id: 1,
       title: "Dashboard",
-      url: "/dashboard/main",
+      url: "/dashboard",
     },
     {
-      icon: Calculator,
+      icon: CheckboxIcon,
       id: 2,
-      title: "Counter",
-      url: "/dashboard/counter",
+      title: "REST Todo's",
+      url: "/dashboard/rest-todos",
     },
     {
-      icon: PocketKnifeIcon,
+      icon: ListPlusIcon,
       id: 3,
-      title: "Pokemons",
-      url: "/dashboard/pokemons",
-    },
-    {
-      icon: HeartIcon,
-      id: 4,
-      title: "Favorites",
-      url: "/dashboard/favorites",
+      title: "Server Actions",
+      url: "/dashboard/server-actions",
     },
   ];
 
@@ -61,7 +52,10 @@ export default function DashboardLayout({
         </Topbar>
 
         {/* Content */}
-        <div className="p-2 lg:p-4 min-h-screen bg-slate-100">{children}</div>
+        <div className="p-2 lg:p-4 min-h-screen bg-neutral-100">{children}</div>
+
+        {/* Footer */}
+        <Footer />
       </main>
     </SidebarProvider>
   );
