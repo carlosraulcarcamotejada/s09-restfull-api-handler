@@ -30,11 +30,9 @@ interface AppSidebarProps {
   navUser: NavUserProps;
 }
 
-export function AppSidebar({
-  appSidebarProps,
-}: {
-  appSidebarProps: AppSidebarProps;
-}) {
+export function AppSidebar({ appSidebarProps  } : { appSidebarProps: AppSidebarProps }) {
+
+
   const { appSidebarLinks, navUser } = appSidebarProps;
 
   return (
