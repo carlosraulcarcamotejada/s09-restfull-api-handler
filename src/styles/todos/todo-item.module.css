@@ -13,7 +13,9 @@
     rounded-lg 
     shadow-sm 
     sm:flex-row 
-    sm:gap-0;
+    sm:gap-0
+
+    dark:bg-blue-600;
 }
 
 .todoPending {
@@ -30,5 +32,7 @@
     rounded-lg 
     shadow-sm
     sm:flex-row 
-    sm:gap-0;
+    sm:gap-0
+    
+    dark:bg-red-500 ;
 }
