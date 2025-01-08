@@ -13,8 +13,11 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { LucideProps } from "lucide-react";
-import { NavUser, NavUserProps } from "@/components/common/nav-user";
-import { TeamSwitcher } from "@/components/common/team-switcher";
+import {
+  NavUser,
+  NavUserProps,
+} from "@/components/common/app-sidebar/components/nav-user";
+import { TeamSwitcher } from "@/components/common/app-sidebar/components/team-switcher";
 import { IconProps } from "@radix-ui/react-icons/dist/types";
 
 interface AppSidebarLinksProps {
@@ -42,8 +45,6 @@ export function AppSidebar({
 
   return (
     <Sidebar>
-      <SidebarHeader />
-
       <SidebarHeader>
         <TeamSwitcher />
       </SidebarHeader>

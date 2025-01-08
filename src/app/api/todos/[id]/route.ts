@@ -1,5 +1,8 @@
 import { Segment } from "@/interfaces/api/segment";
-import { NextResponse, NextRequest } from "next/server";
+import {
+  NextResponse,
+  //  NextRequest
+} from "next/server";
 import prisma from "@/lib/prisma";
 import { Todo } from "@prisma/client";
 import { z } from "zod";
@@ -10,7 +13,10 @@ const getTodo = async (id: string): Promise<Todo | null> => {
   return todo;
 };
 
-export async function GET(request: Request, segment: Segment) {
+export async function GET(
+  // request: Request,
+  segment: { params: { id: string } }
+) {
   const { id } = segment?.params ?? "";
 
   const todo = await getTodo(id);

@@ -1,5 +1,5 @@
 import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/navbar";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,15 +13,14 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { ShadCnLogo } from "../icon/shad-cn-logo-icon";
-import { Button } from "../ui/button";
-import { MoonIcon } from "lucide-react";
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ShadCnLogo } from "@/components/icon/shad-cn-logo-icon";
+import { ThemeButton } from "@/components/common/top-bar/components/theme-button";
 
 export function Topbar({ children }: { children?: React.ReactNode }) {
   return (
-    <Navbar isBordered className="">
+    <Navbar isBordered>
       <div>{children}</div>
       <NavbarContent justify="start" className="bg-lime-300@">
         <NavbarBrand className="items-center gap-2 lg:mr-6 hidden lg:flex">
@@ -36,7 +35,11 @@ export function Topbar({ children }: { children?: React.ReactNode }) {
         justify="end"
       >
         {/* Input */}
-        <Input placeholder="Type to search..." type="search" className="hidden border border-input hover:bg-accent hover:text-accent-foreground relative  bg-foreground-100/50 shadow-none md:w-40 lg:w-56 xl:w-64  lg:block " />
+        <Input
+          placeholder="Type to search..."
+          type="search"
+          className="hidden border border-input hover:bg-accent hover:text-accent-foreground relative  bg-foreground-100/50 shadow-none md:w-40 lg:w-56 xl:w-64  lg:block "
+        />
         {/* <SearchIcon size={18} /> */}
 
         {/* Dropdown Menu */}
@@ -102,9 +105,9 @@ export function Topbar({ children }: { children?: React.ReactNode }) {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button variant={"ghost"} size={"icon"} className="size-12">
-          <MoonIcon className="size-12"  />
-        </Button>
+
+        {/* Theme button */}
+        <ThemeButton />
       </NavbarContent>
     </Navbar>
   );

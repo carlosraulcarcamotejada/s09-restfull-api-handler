@@ -6,7 +6,9 @@ interface TodoItemProps {
 }
 
 const TodoItem = ({ todo }: TodoItemProps) => {
-  const { complete, createdAt, description, id, updatedAt } = todo;
+  const { complete, 
+    // createdAt, description, id, updatedAt
+   } = todo;
 
   return (
     <div className={complete ? styles.todoDone : styles.todoPending}>

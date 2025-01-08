@@ -1,8 +1,12 @@
 import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse, 
+  // NextRequest
+ } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET(
+  // request: Request
+) {
   await prisma.todo.deleteMany();
 
   // Define la constante tipada para los datos
