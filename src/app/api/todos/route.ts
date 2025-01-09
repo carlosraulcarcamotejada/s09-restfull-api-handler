@@ -1,9 +1,9 @@
-import { NextResponse, 
-  // NextRequest 
+import {
+  NextResponse,
+  // NextRequest
 } from "next/server";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
-
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -54,4 +54,14 @@ export async function POST(request: Request) {
   }
 }
 
+export async function DELETE(request: Request) {
+  try {
+    const deletedTodos = await prisma.todo.deleteMany({
+      where: { complete: true },
+    });
 
+    return NextResponse.json({ message: "Todos eliminados", deletedTodos });
+  } catch (error) {
+    return NextResponse.json({ message: error }, { status: 400 });
+  }
+}

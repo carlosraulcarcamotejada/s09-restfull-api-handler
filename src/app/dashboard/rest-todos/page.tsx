@@ -1,3 +1,5 @@
+import { DeleteCompletedTodo } from "@/components/todos/delete-todo";
+import { NewTodo } from "@/components/todos/new-todo";
 import { TodosGrid } from "@/components/todos/todos-grid";
 import prisma from "@/lib/prisma";
 import { Todo } from "@prisma/client";
@@ -12,5 +14,11 @@ export default async function RestTodosPage() {
     orderBy: { description: "asc" },
   });
 
-  return <TodosGrid todos={todos} />;
+  return (
+    <div className="flex flex-col gap-y-10">
+      <NewTodo />
+      <DeleteCompletedTodo />
+      <TodosGrid todos={todos} />
+    </div>
+  );
 }

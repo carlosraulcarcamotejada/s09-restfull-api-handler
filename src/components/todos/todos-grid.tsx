@@ -1,7 +1,7 @@
 "use client";
 import { Todo } from "@prisma/client";
 import { TodoItem } from "./todo-item";
-import * as TodosApi from "@/helpers/todos/todo";
+import * as TodosApi from "@/helpers/todos/todos";
 import { useRouter } from "next/navigation";
 
 interface TodosGridProps {
