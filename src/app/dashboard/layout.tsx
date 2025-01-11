@@ -32,7 +32,7 @@ export default function DashboardLayout({
       icon: ListPlusIcon,
       id: 3,
       title: "Server Actions",
-      url: "/dashboard/server-actions",
+      url: "/dashboard/server-action-todos",
     },
   ];
 

@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,8 +15,15 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as TodosApi from "@/helpers/todos/todos";
+import { createTodo } from "@/actions/todos/action-todos";
 
-const NewTodo = () => {
+interface NewTodoProps {
+  hasServerAction?: boolean;
+}
+
+const NewTodo = ({ hasServerAction = false }: NewTodoProps) => {
+  const pathname = usePathname();
+
   const { refresh } = useRouter();
   // Schema
   const formSchema = z.object({
@@ -38,7 +45,11 @@ const NewTodo = () => {
 
     if (values.todo.trim().length === 0) return;
 
-    await TodosApi.createTodo(values.todo);
+    if (hasServerAction) {
+      createTodo({ description: values.todo, pathname });
+    } else {
+      await TodosApi.createTodo({ description: values.todo });
+    }
     refresh();
     form.reset(defaultValues);
   }

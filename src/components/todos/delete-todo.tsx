@@ -1,10 +1,19 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import * as TodosApi from "@/helpers/todos/todos";
 import { Button } from "@/components/ui/button";
 import { TrashIcon } from "lucide-react";
+import { deleteTodos } from "@/actions/todos/action-todos";
 
-const DeleteCompletedTodo = () => {
+interface DeleteCompletedTodoProps {
+  hasServerAction?: boolean;
+}
+
+const DeleteCompletedTodo = ({
+  hasServerAction = false,
+}: DeleteCompletedTodoProps) => {
+  const pathname = usePathname();
+
   const { refresh } = useRouter();
 
   const deleteCompleteTodos = async () => {
@@ -14,7 +23,12 @@ const DeleteCompletedTodo = () => {
 
   return (
     <div>
-      <Button variant={"destructive"} onClick={deleteCompleteTodos}>
+      <Button
+        variant={"destructive"}
+        onClick={() =>
+          hasServerAction ? deleteTodos({ pathname }) : deleteCompleteTodos()
+        }
+      >
         <TrashIcon /> Borrar completados
       </Button>
     </div>

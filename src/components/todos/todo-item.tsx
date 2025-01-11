@@ -1,22 +1,42 @@
 "use client";
+import { startTransition, useOptimistic } from "react";
+import { usePathname } from "next/navigation";
 import { Todo } from "@prisma/client";
 import styles from "@/styles/todos/todo-item.module.css";
 import { CheckboxIcon, SquareIcon } from "@radix-ui/react-icons";
 
+type ToggleTodo = (args: {
+  id: string;
+  complete: boolean;
+  pathname: string;
+}) => Promise<Todo | void>;
+
 interface TodoItemProps {
   todo: Todo;
-  toggleTodo: (id: string, complete: boolean) => Promise<Todo | void>;
+  toggleTodo: ToggleTodo;
 }
 
 const TodoItem = ({ todo, toggleTodo }: TodoItemProps) => {
-  const {
-    complete,
-    //
-    // createdAt,
-    description,
-    // id,
-    // updatedAt
-  } = todo;
+  const pathname = usePathname();
+
+  const [todoOptimistic, toggleTodoOptimistic] = useOptimistic(
+    todo,
+    (todoState: Todo, newCompleteValue: boolean) => ({
+      ...todoState,
+      complete: newCompleteValue,
+    })
+  );
+
+  const { complete, description, id } = todoOptimistic;
+
+  const onToggleTodo = async () => {
+    try {
+      startTransition(() => toggleTodoOptimistic(!complete));
+      await toggleTodo({ id, complete: !complete, pathname });
+    } catch (error) {
+      startTransition(() => toggleTodoOptimistic(!complete));
+    }
+  };
 
   return (
     <div
@@ -25,7 +45,7 @@ const TodoItem = ({ todo, toggleTodo }: TodoItemProps) => {
       }  flex flex-col sm:flex-row justify-start items-center gap-4`}
     >
       <div
-        onClick={() => toggleTodo(todo.id, !todo.complete)}
+        onClick={onToggleTodo}
         className={`flex p-2 rounded-md cursor-pointer  ${
           complete ? "bg-blue-100 " : "bg-red-100 "
         } mr-4`}
@@ -38,4 +58,5 @@ const TodoItem = ({ todo, toggleTodo }: TodoItemProps) => {
   );
 };
 
+export type { ToggleTodo };
 export { TodoItem };

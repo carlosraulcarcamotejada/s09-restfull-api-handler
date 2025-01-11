@@ -1,26 +1,33 @@
 "use client";
-import { Todo } from "@prisma/client";
-import { TodoItem } from "./todo-item";
-import * as TodosApi from "@/helpers/todos/todos";
 import { useRouter } from "next/navigation";
+import { Todo } from "@prisma/client";
+import { TodoItem } from "@/components/todos/todo-item";
+import * as TodosApi from "@/helpers/todos/todos";
+import { toggleTodo } from "@/actions/todos/action-todos";
 
 interface TodosGridProps {
-  todos?: Todo[];
+  hasServerAction?: boolean;
+  todos: Todo[];
 }
 
-const TodosGrid = ({ todos = [] }: TodosGridProps) => {
+const TodosGrid = ({ hasServerAction = false, todos }: TodosGridProps) => {
   const router = useRouter();
 
-  const toggleTodo = async (id: string, complete: boolean) => {
-    const updatedTodo = await TodosApi.updateTodo(id, complete);
-
+  const RestToggleTodo = async (args: { id: string; complete: boolean }) => {
+    const { complete, id } = args;
+    const updatedTodo = await TodosApi.updateTodo({ id, complete });
     router.refresh();
+    return updatedTodo;
   };
 
   return (
     <div className="flex flex-wrap gap-8">
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} />
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          toggleTodo={hasServerAction ? toggleTodo : RestToggleTodo}
+        />
       ))}
     </div>
   );
