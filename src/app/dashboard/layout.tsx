@@ -7,7 +7,12 @@ import { NavUserProps } from "@/components/common/app-sidebar/components/nav-use
 import { Topbar } from "@/components/common/top-bar/top-bar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { CheckboxIcon } from "@radix-ui/react-icons";
-import { LayoutDashboard, ListPlusIcon } from "lucide-react";
+import {
+  CookieIcon,
+  LayoutDashboard,
+  ListPlusIcon,
+  ShoppingBagIcon,
+} from "lucide-react";
 
 export default function DashboardLayout({
   children,
@@ -33,6 +38,20 @@ export default function DashboardLayout({
       id: 3,
       title: "Server Actions",
       url: "/dashboard/server-action-todos",
+    },
+
+    {
+      icon: CookieIcon,
+      id: 4,
+      title: "Cookies",
+      url: "/dashboard/cookies",
+    },
+
+    {
+      icon: ShoppingBagIcon,
+      id: 5,
+      title: "Products",
+      url: "/dashboard/products",
     },
   ];
 
