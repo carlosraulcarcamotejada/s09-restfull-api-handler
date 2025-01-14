@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import {
   Card,
@@ -9,9 +8,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { PlusCircleIcon, TrashIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
+import { Product } from "@/data/products/products";
+import { AddToCartButton } from "@/components/products/components/add-to-cart-button";
+import { RemoveToCartButton } from "@/components/products/components/remove-to-cart-button";
 
-const ProductCart = () => {
+const ProductCart = (product: Product) => {
+  const { id, image, name, price, rating } = product;
+
   return (
     <Card className="w-80">
       {/* Product Image */}
@@ -20,39 +24,37 @@ const ProductCart = () => {
           width={500}
           height={500}
           className="rounded"
-          src="/images/products/1623735-00-A_0_2000.jpg"
+          src={image}
           alt="product image"
         />
       </CardHeader>
       {/* Title */}
       <CardHeader>
-        <CardTitle>
-          Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport
-        </CardTitle>
+        <CardTitle>{name}</CardTitle>
       </CardHeader>
 
       {/* Content */}
-      <CardContent className="flex items-center gap-x-2 mt-2.5 mb-5">
+      <CardContent className="flex items-center justify-between mt-2.5 mb-5">
         {/* Stars */}
-        <StarFilledIcon className="size-5 text-yellow-300" />
-        <StarFilledIcon className="size-5 text-yellow-300" />
-        <StarFilledIcon className="size-5 text-yellow-300" />
-        <StarFilledIcon className="size-5 text-yellow-300" />
-        <StarFilledIcon className="size-5 text-yellow-300" />
+        <div className="flex gap-x-2">
+          {Array.from({ length: 5 }, (_, index) =>
+            index < rating ? (
+              <StarFilledIcon key={index} className="size-5 text-yellow-300" />
+            ) : (
+              <StarIcon key={index} className="size-5 text-yellow-300" />
+            )
+          )}
+        </div>
 
         {/* Rating Number */}
-        <Badge variant={"default"}> 5.0</Badge>
+        <Badge variant={"default"}>{rating.toFixed(2)}</Badge>
       </CardContent>
       {/* Price and Add to Cart */}
       <CardFooter className="flex items-center justify-between">
-        <span className="text-3xl font-bold">{`$599`}</span>
+        <span className="text-2xl font-bold">{`$${price.toFixed(2)}`}</span>
         <div className="flex gap-x-4">
-          <Button size={"icon"} variant={"default"}>
-            <PlusCircleIcon size={25} />
-          </Button>
-          <Button size={"icon"} variant={"destructive"}>
-            <TrashIcon size={20} />
-          </Button>
+          <AddToCartButton id={id} />
+          <RemoveToCartButton id={id} />
         </div>
       </CardFooter>
     </Card>
