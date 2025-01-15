@@ -1,13 +1,14 @@
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+import { Metadata } from "next";
 import prisma from "@/lib/prisma";
 import { Todo } from "@prisma/client";
 import { DeleteCompletedTodo } from "@/components/todos/delete-todo";
 import { NewTodo } from "@/components/todos/new-todo";
-import { TitleTodosPage } from "@/components/todos/title-todos-page";
+import { TitlePage } from "@/helpers/common/title-page";
 import { TodosGrid } from "@/components/todos/todos-grid";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Rest Todo's",
   description: "Rest Todo's",
 };
@@ -19,7 +20,7 @@ export default async function RestTodosPage() {
 
   return (
     <div className="flex flex-col gap-y-10">
-      <TitleTodosPage title="Rest Todo's" />
+      <TitlePage title="Rest Todo's" />
       <NewTodo />
       <DeleteCompletedTodo />
       <TodosGrid todos={todos} />

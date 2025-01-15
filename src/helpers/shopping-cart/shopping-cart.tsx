@@ -66,4 +66,13 @@ export const getProductsInCart = (
   return productsInCart;
 };
 
+export const getTotalToPay = (productsInCart: ProductCartProps[]): number => {
+  const totalToPay: number = productsInCart.reduce(
+    (acc, cur) => cur.product.price * cur.quantity + acc,
+    0
+  );
+
+  return totalToPay;
+};
+
 export type { CookieCartProps };

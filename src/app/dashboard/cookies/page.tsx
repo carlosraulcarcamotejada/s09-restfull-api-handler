@@ -1,6 +1,7 @@
+import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { TabsBar } from "@/components/common/tab-bar/tab-bar";
-import { Metadata } from "next";
+import { TitlePage } from "@/helpers/common/title-page";
 
 export const metadata: Metadata = {
   title: "Cookies",
@@ -13,9 +14,7 @@ export default async function CookiesPage() {
 
   return (
     <div className="flex flex-col gap-y-8">
-      <h1 className="text-2xl font-semibold leading-none tracking-tight">
-        Tabs
-      </h1>
+      <TitlePage title="Tabs" />
       <TabsBar selectedTab={Number(selectedTab)} />
     </div>
   );

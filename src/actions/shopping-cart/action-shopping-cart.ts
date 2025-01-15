@@ -14,5 +14,3 @@ export const getCookieCart = async (): Promise<CookieCartProps> => {
 
   return {};
 };
-
-export type { CookieCartProps };
