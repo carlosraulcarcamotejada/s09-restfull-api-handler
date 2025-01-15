@@ -1,3 +1,5 @@
+import { ProductCartProps } from "@/components/shopping-cart/product-cart";
+import { products } from "@/data/products/products";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 
 interface CookieCartProps {
@@ -8,7 +10,7 @@ export const getCookieCart = (): CookieCartProps => {
   if (hasCookie("teslo-cart")) {
     const cookieCart: CookieCartProps = JSON.parse(
       (getCookie("teslo-cart") as string) ?? "{}"
-    );
+    ) as CookieCartProps;
     return cookieCart;
   }
 
@@ -33,6 +35,35 @@ export const removeProductFromCart = (id: string) => {
   delete cookieCart[id];
 
   setCookie("teslo-cart", JSON.stringify(cookieCart));
+};
+
+export const removeSingleItemFromCart = (id: string) => {
+  const cookieCart: CookieCartProps = getCookieCart();
+
+  if (!cookieCart[id]) return;
+
+  cookieCart[id] -= 1;
+
+  if (cookieCart[id] <= 0) delete cookieCart[id];
+
+  setCookie("teslo-cart", JSON.stringify(cookieCart));
+};
+
+export const getProductsInCart = (
+  cart: CookieCartProps
+): ProductCartProps[] => {
+  const productsInCart: ProductCartProps[] = Object.keys(cart).reduce(
+    (acc, id) => {
+      const product = products.find((product) => product.id === id);
+      if (product) {
+        acc.push({ product, quantity: cart[id] });
+      }
+      return acc;
+    },
+    [] as ProductCartProps[]
+  );
+
+  return productsInCart;
 };
 
 export type { CookieCartProps };

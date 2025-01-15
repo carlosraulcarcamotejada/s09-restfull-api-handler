@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { StarFilledIcon } from "@radix-ui/react-icons";
 import {
   Card,
   CardContent,
@@ -8,12 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { StarIcon } from "lucide-react";
 import { Product } from "@/data/products/products";
-import { AddToCartButton } from "@/components/products/components/add-to-cart-button";
-import { RemoveToCartButton } from "@/components/products/components/remove-to-cart-button";
+import { AddToCartButton } from "@/components/shopping-cart/add-to-cart-button";
+import { RemoveToCartButton } from "@/components/shopping-cart/remove-to-cart-button";
+import { StarIcon } from "lucide-react";
+import { StarFilledIcon } from "@radix-ui/react-icons";
 
-const ProductCart = (product: Product) => {
+const ProductCard = (product: Product) => {
   const { id, image, name, price, rating } = product;
 
   return (
@@ -61,4 +61,4 @@ const ProductCart = (product: Product) => {
   );
 };
 
-export { ProductCart };
+export { ProductCard };

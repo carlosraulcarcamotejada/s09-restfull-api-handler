@@ -1,33 +1,18 @@
 "use server";
-
-import { hasCookie } from "cookies-next";
 import { cookies } from "next/headers";
+import { CookieCartProps } from "@/helpers/shopping-cart/shopping-cart";
 
-// interface CookieCart {
-//   [id: string]: number;
-// }
+export const getCookieCart = async (): Promise<CookieCartProps> => {
+  const cookiesStore = await cookies();
 
-// export const getCookieCart = async (): Promise<CookieCart> => {
-//   if (hasCookie("teslo-cart")) {
-//     const cookieStore = await cookies();
-//     const cookieCart: CookieCart = JSON.parse(
-//       (cookieStore.get("teslo-cart")?.value as string) ?? "{}"
-//     );
-//     console.log(cookieCart);
-//     return cookieCart;
-//   }
+  if (cookiesStore.has("teslo-cart")) {
+    const cart: CookieCartProps = JSON.parse(
+      cookiesStore.get("teslo-cart")?.value ?? "{}"
+    ) as CookieCartProps;
+    return cart;
+  }
 
-//   return {};
-// };
+  return {};
+};
 
-// export const addProductToCart = async (id: string) => {
-//   const cookieCart: CookieCart = await getCookieCart();
-
-//   if (cookieCart[id]) {
-//     cookieCart[id] = +1;
-//   } else {
-//     cookieCart[id] = 1;
-//   }
-
-
-// };
+export type { CookieCartProps };

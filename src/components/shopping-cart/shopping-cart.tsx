@@ -1,14 +1,13 @@
-import { cookies } from "next/headers";
-import { Button } from "@/components/ui/button";
-import { ShoppingBasket } from "lucide-react";
-import { CookieCartProps } from "@/helpers/shopping-cart/shopping-cart";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  CookieCartProps,
+  getCookieCart,
+} from "@/actions/shopping-cart/action-shopping-cart";
+import { ShoppingBasket } from "lucide-react";
 
 const ShoppingCart = async () => {
-  const cookiesStore = await cookies();
-  const cart: CookieCartProps = JSON.parse(
-    cookiesStore.get("teslo-cart")?.value ?? "{}"
-  ) as CookieCartProps;
+  const cart: CookieCartProps = await getCookieCart();
 
   const items: number = Object.values(cart).reduce(
     (total, item: number) => total + item,

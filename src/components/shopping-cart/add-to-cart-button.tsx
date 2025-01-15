@@ -10,7 +10,7 @@ const AddToCartButton = ({ id }: { id: string }) => {
 
   const onAddToCart = () => {
     addProductToCart(id);
-    toast(`Agregado al shopping cart`, {
+    toast(`Agregado al carrito`, {
       action: {
         label: "Undo",
         onClick: () => console.log("Undo"),

@@ -2,7 +2,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import * as TodosApi from "@/helpers/todos/todos";
 import { Button } from "@/components/ui/button";
-import { TrashIcon } from "lucide-react";
+import { Trash2Icon } from "lucide-react";
 import { deleteTodos } from "@/actions/todos/action-todos";
 
 interface DeleteCompletedTodoProps {
@@ -29,7 +29,7 @@ const DeleteCompletedTodo = ({
           hasServerAction ? deleteTodos({ pathname }) : deleteCompleteTodos()
         }
       >
-        <TrashIcon /> Borrar completados
+        <Trash2Icon /> Borrar completados
       </Button>
     </div>
   );

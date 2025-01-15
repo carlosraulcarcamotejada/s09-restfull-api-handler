@@ -1,4 +1,4 @@
-import { ProductCart } from "@/components/products/product-cart";
+import { ProductCard } from "@/components/products/product-card";
 import { products } from "@/data/products/products";
 import { Metadata } from "next";
 
@@ -11,7 +11,7 @@ export default function ProductPage() {
   return (
     <div className="flex flex-wrap gap-8 pb-60">
       {products.map((product) => (
-        <ProductCart key={product.id} {...product} />
+        <ProductCard key={product.id} {...product} />
       ))}
     </div>
   );

@@ -13,9 +13,9 @@ export default async function CookiesPage() {
 
   return (
     <div className="flex flex-col gap-y-8">
-      <h3 className="text-2xl font-semibold leading-none tracking-tight">
+      <h1 className="text-2xl font-semibold leading-none tracking-tight">
         Tabs
-      </h3>
+      </h1>
       <TabsBar selectedTab={Number(selectedTab)} />
     </div>
   );

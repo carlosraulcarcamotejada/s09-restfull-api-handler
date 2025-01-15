@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { removeProductFromCart } from "@/helpers/shopping-cart/shopping-cart";
-import { TrashIcon } from "lucide-react";
+import { Trash2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -10,7 +10,7 @@ const RemoveToCartButton = ({ id }: { id: string }) => {
 
   const onRemoveToCart = () => {
     removeProductFromCart(id);
-    toast(`Elminado del shopping cart`, {
+    toast(`Elminado del carrito`, {
       action: {
         label: "Undo",
         onClick: () => console.log("Undo"),
@@ -21,7 +21,7 @@ const RemoveToCartButton = ({ id }: { id: string }) => {
 
   return (
     <Button onClick={onRemoveToCart} size={"icon"} variant={"destructive"}>
-      <TrashIcon size={20} />
+      <Trash2Icon size={20} />
     </Button>
   );
 };
