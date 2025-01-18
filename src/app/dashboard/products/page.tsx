@@ -12,7 +12,7 @@ export default function ProductPage() {
   return (
     <div className="flex flex-col gap-y-8">
       <TitlePage title="Productos" />
-      <div className="flex flex-wrap gap-8 pb-60">
+      <div className="flex flex-wrap justify-center gap-8 pb-60">
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
         ))}

@@ -19,7 +19,7 @@ export function Topbar({ children }: { children?: React.ReactNode }) {
       <NavbarContent as="div" className="items-center" justify="end">
         <InputSearch />
 
-        <AvatarDropdownMenu />
+        {/* <AvatarDropdownMenu /> */}
 
         <ShoppingCart />
 

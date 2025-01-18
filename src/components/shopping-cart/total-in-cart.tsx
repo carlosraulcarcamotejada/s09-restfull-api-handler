@@ -19,7 +19,7 @@ const TotalInCart = async ({ tax }: TotalInCartProps) => {
   const totalToPay: number = getTotalToPay(productsInCart) * (1 + tax / 100);
 
   return (
-    <Card className="w-full">
+    <Card className="w-full sticky top-20">
       <CardHeader className="border-b border-foreground-300">
         <CardTitle className="text-center">Total a pagar</CardTitle>
       </CardHeader>

@@ -21,7 +21,7 @@ const TodosGrid = ({ hasServerAction = false, todos }: TodosGridProps) => {
   };
 
   return (
-    <div className="flex flex-wrap gap-8">
+    <div className="flex justify-center flex-wrap w-4/5 gap-8">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}

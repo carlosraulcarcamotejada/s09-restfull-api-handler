@@ -27,7 +27,6 @@ const TabsBar = ({
 
   const onTabSelect = (tab: number) => {
     setSelected(tab);
-    console.log("hello")
     setCookie("selectedTab", `${tab}`);
   };
 

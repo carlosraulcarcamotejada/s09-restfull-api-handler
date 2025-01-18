@@ -56,7 +56,7 @@ const NewTodo = ({ hasServerAction = false }: NewTodoProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-4/5  md:w-2/5">
         <FormField
           control={form.control}
           name="todo"
@@ -71,7 +71,7 @@ const NewTodo = ({ hasServerAction = false }: NewTodoProps) => {
             </FormItem>
           )}
         />
-        <Button type="submit">Crear</Button>
+        <Button type="submit" className="w-full" >Crear</Button>
       </form>
     </Form>
   );

@@ -19,10 +19,13 @@ export default async function RestTodosPage() {
   });
 
   return (
-    <div className="flex flex-col gap-y-10">
+    <div className="flex flex-col items-center gap-y-10 pb-40">
       <TitlePage title="Rest Todo's" />
+
       <NewTodo />
+
       <DeleteCompletedTodo />
+
       <TodosGrid todos={todos} />
     </div>
   );

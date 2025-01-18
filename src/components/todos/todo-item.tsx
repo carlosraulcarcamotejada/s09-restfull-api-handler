@@ -1,9 +1,9 @@
-"use client";
 import { startTransition, useOptimistic } from "react";
 import { usePathname } from "next/navigation";
 import { Todo } from "@prisma/client";
-import styles from "@/styles/todos/todo-item.module.css";
-import { CheckboxIcon, SquareIcon } from "@radix-ui/react-icons";
+import { Card } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 type ToggleTodo = (args: {
   id: string;
@@ -39,22 +39,16 @@ const TodoItem = ({ todo, toggleTodo }: TodoItemProps) => {
   };
 
   return (
-    <div
-      className={`${
-        complete ? styles.todoDone : styles.todoPending
-      }  flex flex-col sm:flex-row justify-start items-center gap-4`}
-    >
-      <div
-        onClick={onToggleTodo}
-        className={`flex p-2 rounded-md cursor-pointer  ${
-          complete ? "bg-blue-100 " : "bg-red-100 "
-        } mr-4`}
-      >
-        {complete ? <CheckboxIcon /> : <SquareIcon />}
-      </div>
-
-      <div className="text-center">{description}</div>
-    </div>
+    <Card className="p-4 flex gap-x-4 items-center justify-center">
+      <Checkbox
+        checked={complete}
+        id={description}
+        onCheckedChange={onToggleTodo}
+      />
+      <Label className={complete ? "line-through" : ""} htmlFor={description}>
+        {description}
+      </Label>
+    </Card>
   );
 };
 

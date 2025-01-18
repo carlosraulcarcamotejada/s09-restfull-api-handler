@@ -15,19 +15,19 @@ const ProductCart = ({ product, quantity }: ProductCartProps) => {
   const total: number = quantity * price;
 
   return (
-    <Card className="flex gap-x-4 items-center justify-between w-full h-32 p-4">
+    <Card className="flex flex-col md:flex-row gap-x-4 items-center justify-between w-full md:h-32 md:p-4">
       {/* Image */}
-      <div className="flex items-center gap-x-4 bg-sky-400#">
+      <div className="flex flex-col md:flex-row gap-y-2 items-center md:gap-x-4 bg-sky-400#">
         <Image
           height={100}
           width={100}
           src={image}
-          className="rounded-md"
+          className="rounded-md size-40 h-40 md:size-28"
           alt={"product-image-cart"}
         />
         {/* Name - Price - Quantity - Total */}
         <div className="flex flex-col">
-          <span className="text-xl font-semibold">{`${name}`}</span>
+          <span className="text-xl font-bold">{`${name}`}</span>
           <span>{`$${price.toFixed(2)}`}</span>
           <span>{`Cantidad: ${quantity}`}</span>
           <span>{`Total: $${total.toFixed(2)}`}</span>

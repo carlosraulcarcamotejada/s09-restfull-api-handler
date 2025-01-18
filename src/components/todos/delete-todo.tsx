@@ -22,8 +22,9 @@ const DeleteCompletedTodo = ({
   };
 
   return (
-    <div>
+    <div className="w-full flex justify-center">
       <Button
+        className="w-4/5 md:w-2/5"
         variant={"destructive"}
         onClick={() =>
           hasServerAction ? deleteTodos({ pathname }) : deleteCompleteTodos()

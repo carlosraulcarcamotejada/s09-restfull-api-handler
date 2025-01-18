@@ -19,10 +19,13 @@ export default async function ServerActionTodosPage() {
   });
 
   return (
-    <div className="flex flex-col gap-y-10">
+    <div className="flex flex-col items-center gap-y-10 pb-40">
       <TitlePage title="Server Actions Todo's" />
+
       <NewTodo hasServerAction />
+
       <DeleteCompletedTodo hasServerAction />
+
       <TodosGrid hasServerAction todos={todos} />
     </div>
   );
