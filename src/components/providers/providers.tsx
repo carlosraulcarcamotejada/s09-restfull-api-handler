@@ -4,6 +4,7 @@ import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as ToasterSonner } from "@/components/ui/sonner";
+import { SessionProvider } from "next-auth/react";
 
 function Providers({
   children,
@@ -13,7 +14,7 @@ function Providers({
     <NextThemesProvider {...props}>
       <Toaster />
       <ToasterSonner />
-      {children}
+      <SessionProvider>{children}</SessionProvider>
     </NextThemesProvider>
   );
 }

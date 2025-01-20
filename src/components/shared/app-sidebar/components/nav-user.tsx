@@ -27,15 +27,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DefaultSession } from "next-auth";
+import { signOut, useSession } from "next-auth/react";
 
-interface NavUserProps {
-  name: string;
-  email: string;
-  avatar: string;
-}
-
-export function NavUser({ user }: { user: NavUserProps }) {
+export function NavUser({ user }: { user: DefaultSession["user"] }) {
   const { isMobile } = useSidebar();
+
+  const { email, image, name } = user ?? {};
+
+  const { data: session, status } = useSession();
 
   return (
     <SidebarMenu>
@@ -47,12 +47,12 @@ export function NavUser({ user }: { user: NavUserProps }) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage src={image ?? ""} alt={name ?? ""} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-semibold">{name}</span>
+                <span className="truncate text-xs">{email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -66,12 +66,12 @@ export function NavUser({ user }: { user: NavUserProps }) {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage src={image ?? ""} alt={name ?? ""} />
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-semibold">{name}</span>
+                  <span className="truncate text-xs">{email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -98,7 +98,7 @@ export function NavUser({ user }: { user: NavUserProps }) {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => signOut()}>
               <LogOut />
               Log out
             </DropdownMenuItem>
@@ -108,5 +108,3 @@ export function NavUser({ user }: { user: NavUserProps }) {
     </SidebarMenu>
   );
 }
-
-export type { NavUserProps };

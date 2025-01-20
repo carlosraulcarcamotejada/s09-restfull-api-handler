@@ -13,12 +13,12 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { LucideProps } from "lucide-react";
-import {
-  NavUser,
-  NavUserProps,
-} from "@/components/shared/app-sidebar/components/nav-user";
+import { NavUser } from "@/components/shared/app-sidebar/components/nav-user";
 import { TeamSwitcher } from "@/components/shared/app-sidebar/components/team-switcher";
 import { IconProps } from "@radix-ui/react-icons/dist/types";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 interface AppSidebarLinksProps {
   id: number;
@@ -33,15 +33,18 @@ interface AppSidebarLinksProps {
 
 interface AppSidebarProps {
   appSidebarLinks: AppSidebarLinksProps[];
-  navUser: NavUserProps;
 }
 
-export function AppSidebar({
+export async function AppSidebar({
   appSidebarProps,
 }: {
   appSidebarProps: AppSidebarProps;
 }) {
-  const { appSidebarLinks, navUser } = appSidebarProps;
+  const { appSidebarLinks } = appSidebarProps;
+
+  const session = await getServerSession(authOptions);
+
+  !session && redirect("/api/auth/signin");
 
   return (
     <Sidebar>
@@ -71,7 +74,7 @@ export function AppSidebar({
       </SidebarContent>
 
       <SidebarFooter>
-        <NavUser user={navUser} />
+        <NavUser user={session?.user} />
       </SidebarFooter>
     </Sidebar>
   );

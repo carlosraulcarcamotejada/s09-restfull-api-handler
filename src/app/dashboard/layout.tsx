@@ -3,7 +3,6 @@ import {
   AppSidebarLinksProps,
 } from "@/components/shared/app-sidebar/app-sidebar";
 import { Footer } from "@/components/shared/footer";
-import { NavUserProps } from "@/components/shared/app-sidebar/components/nav-user";
 import { Topbar } from "@/components/shared/top-bar/top-bar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { CheckboxIcon } from "@radix-ui/react-icons";
@@ -55,15 +54,9 @@ export default function DashboardLayout({
     },
   ];
 
-  const navUser: NavUserProps = {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "https://avatars.githubusercontent.com/u/38920540?v=4",
-  };
-
   return (
     <SidebarProvider>
-      <AppSidebar appSidebarProps={{ appSidebarLinks, navUser }} />
+      <AppSidebar appSidebarProps={{ appSidebarLinks }} />
       <main className="w-full">
         {/* Topbar */}
         <Topbar>
