@@ -1,4 +1,4 @@
-import { WidgetItem } from "@/components/common/widget-item";
+import { WidgetItem } from "@/components/shared/widget-item";
 
 
 export const metadata = {

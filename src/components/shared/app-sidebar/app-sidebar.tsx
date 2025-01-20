@@ -16,8 +16,8 @@ import { LucideProps } from "lucide-react";
 import {
   NavUser,
   NavUserProps,
-} from "@/components/common/app-sidebar/components/nav-user";
-import { TeamSwitcher } from "@/components/common/app-sidebar/components/team-switcher";
+} from "@/components/shared/app-sidebar/components/nav-user";
+import { TeamSwitcher } from "@/components/shared/app-sidebar/components/team-switcher";
 import { IconProps } from "@radix-ui/react-icons/dist/types";
 
 interface AppSidebarLinksProps {

@@ -1,9 +1,9 @@
 import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/navbar";
 import { ShadCnLogo } from "@/components/icon/shad-cn-logo-icon";
-import { ThemeButton } from "@/components/common/top-bar/components/theme-button";
+import { ThemeButton } from "@/components/shared/top-bar/components/theme-button";
 import { ShoppingCart } from "@/components/shopping-cart/shopping-cart";
-import { AvatarDropdownMenu } from "@/components/common/top-bar/components/avatar-dropdown-menu";
-import { InputSearch } from "@/components/common/top-bar/components/input-search";
+import { AvatarDropdownMenu } from "@/components/shared/top-bar/components/avatar-dropdown-menu";
+import { InputSearch } from "@/components/shared/top-bar/components/input-search";
 
 export function Topbar({ children }: { children?: React.ReactNode }) {
   return (

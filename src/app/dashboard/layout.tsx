@@ -1,10 +1,10 @@
 import {
   AppSidebar,
   AppSidebarLinksProps,
-} from "@/components/common/app-sidebar/app-sidebar";
-import { Footer } from "@/components/common/footer";
-import { NavUserProps } from "@/components/common/app-sidebar/components/nav-user";
-import { Topbar } from "@/components/common/top-bar/top-bar";
+} from "@/components/shared/app-sidebar/app-sidebar";
+import { Footer } from "@/components/shared/footer";
+import { NavUserProps } from "@/components/shared/app-sidebar/components/nav-user";
+import { Topbar } from "@/components/shared/top-bar/top-bar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { CheckboxIcon } from "@radix-ui/react-icons";
 import {
