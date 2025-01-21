@@ -1,4 +1,4 @@
-import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/navbar";
+import { Navbar, NavbarBrand, NavbarContent } from "@heroui/navbar";
 import { ShadCnLogo } from "@/components/icon/shad-cn-logo-icon";
 import { ThemeButton } from "@/components/shared/top-bar/components/theme-button";
 import { ShoppingCart } from "@/components/shopping-cart/shopping-cart";
