@@ -43,7 +43,7 @@ const todoSchema = z.object({
 });
 
 export async function PUT(request: Request, segment: Segment) {
-  const { id } = segment?.params ?? "";
+  const { id } = (await segment?.params) ?? "";
 
   const todo = await getTodo(id);
 

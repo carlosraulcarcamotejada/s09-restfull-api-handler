@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import {
   CookieCartProps,
   getCookieCart,
-} from "@/actions/shopping-cart/action-shopping-cart";
+} from "@/actions/shopping-cart/shopping-cart-actions";
 import { ShoppingBasket } from "lucide-react";
 
 const ShoppingCart = async () => {

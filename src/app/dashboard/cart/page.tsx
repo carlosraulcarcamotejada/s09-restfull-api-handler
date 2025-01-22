@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getCookieCart } from "@/actions/shopping-cart/action-shopping-cart";
+import { getCookieCart } from "@/actions/shopping-cart/shopping-cart-actions";
 import {
   ProductCart,
   ProductCartProps,

@@ -4,6 +4,7 @@ import {
 } from "next/server";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
+import { getUserSessionServer } from "@/actions/auth/auth-actions";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -44,9 +45,17 @@ const todoSchema = z.object({
 
 export async function POST(request: Request) {
   try {
-    const body = todoSchema.parse(await request.json());
+    const { complete, description } = todoSchema.parse(await request.json());
 
-    const todo = await prisma.todo.create({ data: body });
+    const user = await getUserSessionServer();
+
+    if (!user) {
+      return NextResponse.json({ message: "No autorizado" }, { status: 401 });
+    }
+
+    const todo = await prisma.todo.create({
+      data: { complete, description, userId: user.id },
+    });
 
     return NextResponse.json({ message: "Todo creado", todo });
   } catch (error) {

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { cookies } from "next/headers";
-import { TabsBar } from "@/components/common/tab-bar/tab-bar";
 import { TitlePage } from "@/helpers/common/title-page";
+import { TabsBar } from "@/components/shared/tab-bar/tab-bar";
 
 export const metadata: Metadata = {
   title: "Cookies",

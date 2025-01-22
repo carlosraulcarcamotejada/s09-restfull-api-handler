@@ -1,5 +1,4 @@
 "use client";
-
 import {
   ChevronsUpDown,
   Sparkles,
@@ -35,7 +34,9 @@ export function NavUser({ user }: { user: DefaultSession["user"] }) {
 
   const { email, image, name } = user ?? {};
 
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
+
+  const userRoles: string = session?.user?.roles?.join(",") ?? "";
 
   return (
     <SidebarMenu>
@@ -48,7 +49,11 @@ export function NavUser({ user }: { user: DefaultSession["user"] }) {
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={image ?? ""} alt={name ?? ""} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg">
+                  {name
+                    ? name?.split(" ").map((item) => item[0])
+                    : email?.split("@")[0][0]}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{name}</span>
@@ -67,11 +72,18 @@ export function NavUser({ user }: { user: DefaultSession["user"] }) {
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={image ?? ""} alt={name ?? ""} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">
+                    {name
+                      ? name?.split(" ").map((item) => item[0])
+                      : email?.split("@")[0][0]}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">{name}</span>
                   <span className="truncate text-xs">{email}</span>
+                  <span className="truncate capitalize text-xs">
+                    {userRoles}
+                  </span>
                 </div>
               </div>
             </DropdownMenuLabel>

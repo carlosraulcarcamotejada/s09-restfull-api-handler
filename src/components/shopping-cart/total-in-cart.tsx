@@ -1,4 +1,4 @@
-import { getCookieCart } from "@/actions/shopping-cart/action-shopping-cart";
+import { getCookieCart } from "@/actions/shopping-cart/shopping-cart-actions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   CookieCartProps,

@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { Todo } from "@prisma/client";
 import { TodoItem } from "@/components/todos/todo-item";
 import * as TodosApi from "@/helpers/todos/todos";
-import { toggleTodo } from "@/actions/todos/action-todos";
+import { toggleTodo } from "@/actions/todos/todos-actions";
 
 interface TodosGridProps {
   hasServerAction?: boolean;

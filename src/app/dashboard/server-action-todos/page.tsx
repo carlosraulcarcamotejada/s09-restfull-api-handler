@@ -7,6 +7,7 @@ import { DeleteCompletedTodo } from "@/components/todos/delete-todo";
 import { NewTodo } from "@/components/todos/new-todo";
 import { TitlePage } from "@/helpers/common/title-page";
 import { TodosGrid } from "@/components/todos/todos-grid";
+import { getUserSessionServer } from "@/actions/auth/auth-actions";
 
 export const metadata: Metadata = {
   title: "Server Actions Todos",
@@ -14,7 +15,12 @@ export const metadata: Metadata = {
 };
 
 export default async function ServerActionTodosPage() {
+  const user = await getUserSessionServer();
+
   const todos: Todo[] = await prisma.todo.findMany({
+    where: {
+      userId: user?.id,
+    },
     orderBy: { description: "asc" },
   });
 

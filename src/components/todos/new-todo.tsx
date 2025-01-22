@@ -15,7 +15,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as TodosApi from "@/helpers/todos/todos";
-import { createTodo } from "@/actions/todos/action-todos";
+import { createTodo } from "@/actions/todos/todos-actions";
 
 interface NewTodoProps {
   hasServerAction?: boolean;
@@ -25,6 +25,7 @@ const NewTodo = ({ hasServerAction = false }: NewTodoProps) => {
   const pathname = usePathname();
 
   const { refresh } = useRouter();
+
   // Schema
   const formSchema = z.object({
     todo: z.string().min(2, {
@@ -40,15 +41,14 @@ const NewTodo = ({ hasServerAction = false }: NewTodoProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-
     if (values.todo.trim().length === 0) return;
 
     if (hasServerAction) {
       createTodo({ description: values.todo, pathname });
     } else {
-      await TodosApi.createTodo({ description: values.todo });
+      await TodosApi.createTodo({
+        description: values.todo,
+      });
     }
     refresh();
     form.reset(defaultValues);
@@ -56,7 +56,10 @@ const NewTodo = ({ hasServerAction = false }: NewTodoProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-4/5  md:w-2/5">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 w-4/5  md:w-2/5"
+      >
         <FormField
           control={form.control}
           name="todo"
@@ -71,7 +74,9 @@ const NewTodo = ({ hasServerAction = false }: NewTodoProps) => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" >Crear</Button>
+        <Button type="submit" className="w-full">
+          Crear
+        </Button>
       </form>
     </Form>
   );
